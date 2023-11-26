@@ -29,9 +29,7 @@
  
 # ⚠️ PR 규칙 및 Commit Message 규칙
 Pull Request
-* [LeetCode-문제번호] 본인 이름
-
-* [백준-문제번호] 본인 이름
+* [오늘 날짜] 본인 이름
 
 Commit Message
 * [LeetCode-문제번호] 문제명
