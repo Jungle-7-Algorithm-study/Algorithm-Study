@@ -30,6 +30,7 @@
 # ⚠️ PR 규칙 및 Commit Message 규칙
 Pull Request
 * [오늘 날짜] 본인 이름
+  - [2023/11/26] 전성태
 
 Commit Message
 * [LeetCode-문제번호] 문제명
