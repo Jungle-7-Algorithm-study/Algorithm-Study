@@ -12,4 +12,4 @@ for i in range(count):
     elif(digit == 'B'):
         if(countCopy +1 <= count):
             countCopy = countCopy +1;
-    elif()
+    elif(digit[0] == "P"):
