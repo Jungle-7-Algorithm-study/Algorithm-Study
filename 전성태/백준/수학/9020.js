@@ -29,16 +29,20 @@ for(let i = 1;i<=n;i++){
 
 numArr.forEach((num)=>{
     const primes = is_prime(num)
-    let a = 0
-    let b = 0
 
-    for(let i = 0; i < primes.length; i++){
-        for(let j = i; j<primes.length;j++){
-            if((primes[i] + primes[j]) === num){
-                a = primes[i]
-                b = primes[j]
+    let right = left = num/2
+    if(!(primes.includes(num/2))){
+        while(true){
+            if(primes.includes(left) && primes.includes(right) && left + right == num)
+                break;
+            else{
+                left--;
+                right++
             }
         }
     }
-    console.log(`${a} ${b}`)
+    console.log(`${left} ${right}`)
 })
+
+// 시간 : 7208ms
+// 메모리 : 28720KB
