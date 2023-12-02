@@ -1,27 +1,28 @@
+# 스택으로 다시 풀어보기
 import sys
 input = sys.stdin.readline
 # a b c d
+
+from collections import deque
 words =list(input()[:-1])
-print(words)
+stack = deque();
+
 count = int(input()); # 4
-digit = len(words); # 4
+# 왼쪽은  커서 왼쪽의 내용 words
+# 오른쪽은 커서 오른쪽의 내용. stack
 for i in range(count):
     print(words)
-    print(digit);
-    inputs = input().split();
-    if(inputs[0] == 'L'):
-        if(digit > 0):
-            digit = digit -1; # 3
-    elif(inputs[0] == 'B'): 
+    print(stack)
+    order = input().split();
+    
+    if(order[0] == 'L' and words):
+        stack.appendleft(words.pop());
+    elif(order[0] == 'B' and words): 
         # 4 4
-        if(digit -1 < 0):
-            continue;
-        del words[digit -1];
-        digit = digit -1;  
-    elif(inputs[0] == "D"):
-        if(len(words) >= digit+1):
-            digit = digit + 1
-    elif(inputs[0] == "P"):
-        words.insert(digit, inputs[1]);
-        digit = digit+1
-print("".join(words));
+        words.pop();
+    elif(order[0] == "D" and stack):
+        words.append(stack.popleft())
+    elif(order[0] == "P" ):
+        words.append(order[1]);
+result = words + list(stack);
+print("".join(result));
