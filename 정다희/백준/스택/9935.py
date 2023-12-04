@@ -1,3 +1,4 @@
+# 	189804	560
 import sys
 input = sys.stdin.readline
 
@@ -13,9 +14,3 @@ for i in words:
         del ans[-len_bomb:]
 print("".join(ans) if ans else 'FRULA');
 
-# while(exp in words):
-#     words = words.replace(exp, '');
-# if words == "" :
-#     print('FRULA');
-# else:
-#     print(words)
