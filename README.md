@@ -8,7 +8,7 @@
 7. 주말에 릿코드 콘테스트 볼 사람은 그거 대신 올려도 됨
 
 # 📆 기간
-2023 / 12/ 22 ~ 미정
+2023 / 12/ 22 ~ 취업때 까지
 
 # 🗂️ 문제 링크
 * [1주차~3주차 (백준)](https://docs.google.com/spreadsheets/d/1z4a3pSM-h76kwdUAlPXXmbwcpP-VKFYFK92TCQtjXV4/edit#gid=0)
