@@ -14,10 +14,10 @@ class Solution:
         acc = list(itertools.accumulate(nums))
 
         for end in range(len(nums) - 1, 1, -1):
-            for start in range(end - 1, -1, -1):
-                right = nums[end]
-                if acc[start] > right:
-                    return acc[start] + right
+            start = end - 1
+            right = nums[end]
+            if acc[start] > right:
+                return acc[start] + right
 
         return -1
 
