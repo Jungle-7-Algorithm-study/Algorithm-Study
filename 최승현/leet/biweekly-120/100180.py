@@ -4,27 +4,22 @@ Find Polygon With the Largest Perimeter
 """
 
 
+import itertools
 from typing import List
 
 
 class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
-        ret = -1
         nums.sort()
+        acc = list(itertools.accumulate(nums))
 
         for end in range(len(nums) - 1, 1, -1):
-            left_sum = nums[0] + nums[1]
-            right = nums[end]
-            index = 2
+            for start in range(end - 1, -1, -1):
+                right = nums[end]
+                if acc[start] > right:
+                    return acc[start] + right
 
-            while index < end:
-                left_sum += nums[index]
-                index += 1
-
-            if left_sum > right:
-                ret = max(ret, left_sum + right)
-
-        return ret
+        return -1
 
 
 if __name__ == "__main__":
