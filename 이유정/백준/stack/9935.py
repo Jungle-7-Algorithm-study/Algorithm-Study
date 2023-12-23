@@ -11,7 +11,7 @@ for i in input_str:
         for _ in range(bomb_len):
             stack.pop()
 if stack:
-    print(*stack, sep='')
+    print(*stack,sep='')
 else:
     print("FLULA")
 
