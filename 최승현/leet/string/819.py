@@ -44,3 +44,13 @@ class Solution3:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
         counter = Counter(w for w in self.getSplit(paragraph) if w not in banned)
         return counter.most_common()[0][0]
+
+
+class Solution4:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        banned_set = set(banned)
+        normalized = "".join(c.lower() if c.isalnum() else " " for c in paragraph)
+        words = normalized.split()
+        filtered = filter(lambda w: w and w not in banned_set, words)
+        counter = Counter(filtered)
+        return counter.most_common()[0][0]
