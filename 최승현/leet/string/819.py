@@ -47,6 +47,10 @@ class Solution3:
 
 
 class Solution4:
+    """
+    banned가 list였기 때문에 필터링에서 오랜 시간이 걸렸던 것이다. 따라서 이를 set으로 바꿔줬더니 90ms -> 38ms로 바뀌었다.
+    """
+
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
         banned_set = set(banned)
         normalized = "".join(c.lower() if c.isalnum() else " " for c in paragraph)
