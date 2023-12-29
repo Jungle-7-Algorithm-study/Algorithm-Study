@@ -58,3 +58,16 @@ class Solution4:
         filtered = filter(lambda w: w and w not in banned_set, words)
         counter = Counter(filtered)
         return counter.most_common()[0][0]
+
+
+class Solution5:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        banned_set = set(banned)
+        counter = Counter(
+            w
+            for w in "".join(
+                c.lower() if c.isalnum() else " " for c in paragraph
+            ).split()
+            if w and w not in banned_set
+        )
+        return counter.most_common()[0][0]
