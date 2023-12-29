@@ -16,3 +16,14 @@ class Solution:
         counter = Counter(filtered)
         print(counter)
         return counter.most_common()[0][0]
+
+
+class Solution2:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        words = [
+            w
+            for w in re.sub(r"[^\w]", " ", paragraph).lower().split()
+            if w not in banned
+        ]
+        counter = Counter(words)
+        return counter.most_common()[0][0]
