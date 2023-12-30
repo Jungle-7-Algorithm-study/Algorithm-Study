@@ -28,11 +28,12 @@ class Solution:
         adj_dict: {v1: [(v2, w12), (v3, w13), ...]} vice versa
         """
         l: int = 1
-        r: int = max_c
+        r: int = max_c + 1
 
         while l != r:
             # deliver 할 수 있는 가장 큰 무게를 구하라: Last True를 구하라
             m = (l + r) // 2
+            # print(f"\nm: {m}")
             if self.can_deliver(adj_dict, m, n, a, b):
                 # go right
                 l = m + 1
@@ -58,7 +59,7 @@ class Solution:
                 return True
             # print(f"cur: {cur}")
             for v, w in adj_dict[cur]:
-                # print(f"adj, capacity: {adj}, {capacity}")
+                # print(f"(v, w): ({v}, {w})")
                 if not visited[v] and w >= weight:
                     visited[v] = True
                     dq.append(v)
