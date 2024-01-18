@@ -1,9 +1,9 @@
 // function recur(start, end, search){
-//     if(start == end){
+//     if(start === end){
 //         if(A[start] === search)
-//             console.log(1)
+//             res.push(1)
 //         else   
-//             console.log(0)
+//             res.push(0)
 //         return
 //     }
 
@@ -20,24 +20,30 @@
 // const M = parseInt(stdin[2])
 // const Nums = stdin[3].split(' ').map(Number)
 // A.sort((a,b)=>a-b)
+// const res = []
 // for(let i = 0; i < M; i++){
 //     recur(0,N-1,Nums[i])
 // }
 
+// console.log(res.join('\n'))
+
+
 function recur(start, end, search){
-    if(start == end){
-        if(A[start] === search)
-            res.push(1)
-        else   
-            res.push(0)
+    if(start > end){
+        res.push(0)
         return
     }
 
     let middle = ~~((start + end)/2)
-    if(A[middle] >= search)
-        recur(start, middle, search)
-    else
+    if(A[middle] === search){
+        res.push(1)
+        return
+    }
+    else if(A[middle] > search){
+        recur(start, middle - 1, search)
+    } else {
         recur(middle + 1, end, search)
+    }
 }
 
 const stdin = require('fs').readFileSync('/dev/stdin').toString().split('\n')
