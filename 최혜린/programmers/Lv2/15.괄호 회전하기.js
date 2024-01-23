@@ -4,11 +4,11 @@ function solution(s) {
   let cnt = 0;
   let isRight = true;
 
-  for (let i=0; i<s.length; i++) {
+  for (let i = 0; i < s.length; i++) {
     const stack = [];
     isRight = true;
     // rotateS: 왼쪽으로 괄호 옮긴 후 결과
-    let rotateS = s.slice(i)+s.slice(0,i);
+    let rotateS = s.slice(i) + s.slice(0, i);
     for (let word of rotateS) {
       if (word === "(" || word === "{" || word === "[")
         stack.push(word);

@@ -14,13 +14,13 @@ function solution(k, tangerine) {
   let cnt = 0;
   // 빈도수 값만 내림차순 정렬해서 val 배열에 담음
   // 어떤 종류를 담는지 중요하지 않으므로 key는 제외하고 value만 별도로 빼준 것!
-  const val = Array.from(freq.values()).sort((a,b) => (b-a));
+  const val = Array.from(freq.values()).sort((a, b) => (b - a));
 
-  for (let i=0; i<val.length; i++) {
+  for (let i = 0; i < val.length; i++) {
     if (k <= 0)
       break;
     k -= val[i];
-    cnt ++;
+    cnt++;
   }
   return cnt;
 }

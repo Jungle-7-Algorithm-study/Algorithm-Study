@@ -27,11 +27,11 @@ function solution(want, number, discount) {
 // 변태의 코드
 function solution2(want, number, discount) {
   let cnt = 0;
-  for (let i=0; i<=discount.length-10; i++) {
-    const arr = discount.slice(i, i+10);
+  for (let i = 0; i <= discount.length - 10; i++) {
+    const arr = discount.slice(i, i + 10);
 
     let flag = true;
-    for (let j=0; j<want.length; j++) {
+    for (let j = 0; j < want.length; j++) {
       if (arr.filter((item) => item === want[j]).length !== number[j]) {
         flag = false;
         break;
