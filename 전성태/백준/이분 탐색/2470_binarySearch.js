@@ -1,22 +1,26 @@
-function recur(start, end){
-    if(start >= end) return
+// 이분탐색 이용
 
-    let inner_gap = arr[end] + arr[start]
+function recur(start, end, num){
+    if(start > end) return
+
+    let middle = ~~((start + end)/2)
+
+    let inner_gap = num + arr[middle]
     let abs_inner_gap = inner_gap < 0 ? -1n * inner_gap : inner_gap
     
     if(abs_inner_gap < ans){
         ans = abs_inner_gap
-        ansStart = start
-        ansEnd = end
+        ansStart = num
+        ansEnd = arr[middle]
     }
     
     if(inner_gap === 0){
         return
     }
     else if(inner_gap > 0){
-        recur(start, end - 1)
+        recur(start, middle - 1,num)
     } else {
-        recur(start + 1, end)
+        recur(middle + 1, end,num)
     }
 }
 
@@ -31,6 +35,11 @@ arr.sort((a,b)=>{
 let ansStart = 0;
 let ansEnd = 0;
 let ans = 1_000_000_000_000n;
-recur(0, N-1)
+for(let i = 0; i < N; i++){
+    recur(i+1, N-1, arr[i])
+}
 
-console.log(arr[ansStart].toString(), arr[ansEnd].toString())
+console.log(ansStart.toString(), ansEnd.toString())
+
+// 시간 : 480 ms
+// 메모리 : 38644 KB
