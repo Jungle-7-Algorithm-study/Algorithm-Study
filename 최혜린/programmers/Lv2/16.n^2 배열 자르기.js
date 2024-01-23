@@ -6,18 +6,18 @@ function solution(n, left, right) {
       ans.push(Math.max(i, j));
     }
   }
-  return ans.slice(left, right+1);
+  return ans.slice(left, right + 1);
 }
 
 // 해답
 function solution2(n, left, right) {
   let ans = [];
 
-  while(left <= right) {
+  while (left <= right) {
     ans.push(Math.max(Math.floor(left / n), left % n) + 1);
     left++;
   }
- return ans;
+  return ans;
 }
 
 n = 4;
