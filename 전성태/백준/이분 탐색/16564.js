@@ -5,7 +5,7 @@ function binarySearch(start, end){
 
     let middle = ~~((start + end)/2n)
 
-    let val = arr[0] + middle // 목표  
+    let val = arr[0] + middle // 목표 레벨
     let count = 0n // 소비된 레벨
     for(let i = 0; i < N; i++){
         if(arr[i] >= val) continue
