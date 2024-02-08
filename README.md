@@ -32,6 +32,8 @@
 Pull Request
 * [오늘 날짜] 본인 이름
   - ex) `[2023/11/26] 전성태`
+- 이름 뒤에 부연 설명 가능
+  - ex) `[2024/02/08] 전성태_큐_class사용`
 
 Commit Message
 * [LeetCode-문제번호] 문제명
