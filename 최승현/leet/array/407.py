@@ -3,7 +3,8 @@ https://leetcode.com/problems/trapping-rain-water-ii/
 42.py 차원 증가버전
 """
 
-from typing import Callable, Generator, Iterator, List, Tuple
+from typing import Callable, Generator, Iterator, List, Self, Tuple
+from heapq import heappush, heappop
 
 
 def water(heights: Iterator[int]) -> Generator:
@@ -137,8 +138,87 @@ class Solution2:
         return ret
 
 
+class Solution3:
+
+    def trapRainWater(self, heightMap: List[List[int]]) -> int:
+        """
+        MinHeap과 BFS를 활용한 방법
+        1. 가장자리는 언제나 물을 가둘 수 없기 때문에 MinHeap(이하 queue)에 추가한다.
+        2. queue에서 셀을 꺼낼 때마다 최소높이가 튀나오기 때문에 물을 가둘 수 있는 최소수위 level이 된다.
+            level은 감소하지 않는다.
+        3. 튀어나온 셀의 인접 셀을 비교했을 때 현재 level보다 낮은 셀을 발견한다면 그 셀은 물을 가둘 수
+            있게 된다. 그 차이만큼 ret에 추가한다. queue에 인접 셀들을 추가한다.
+        """
+
+        class Cell:
+            def __init__(self, i: int, j: int, height: int) -> None:
+                self.i = i
+                self.j = j
+                self.height = height
+
+            def __lt__(self, other: Self) -> bool:
+                return self.height < other.height
+
+            def __repr__(self) -> str:
+                return f"(i:{self.i}, j:{self.j}, h:{self.height})"
+
+        N = len(heightMap)
+        M = len(heightMap[0])
+        cell_map = [
+            [Cell(i, j, height) for j, height in enumerate(line)]
+            for i, line in enumerate(heightMap)
+        ]
+        q: List[Cell] = []
+
+        ## 1.
+
+        visited = [[False for _ in range(M)] for _ in range(N)]
+        level = 0
+        for col in range(M):
+            heappush(q, cell_map[0][col])
+            heappush(q, cell_map[-1][col])
+            visited[0][col] = True
+            visited[-1][col] = True
+
+        for row in range(N):
+            heappush(q, cell_map[row][0])
+            heappush(q, cell_map[row][-1])
+            visited[row][0] = True
+            visited[row][-1] = True
+
+        visit_cnt = 2 * (N + M) - 4
+
+        ## 2.
+
+        ret = 0
+
+        while q:
+            if visit_cnt == N * M:
+                break
+            cell = heappop(q)
+            level = max(level, cell.height)
+
+            for di, dj in deltas():
+                i = cell.i + di
+                j = cell.j + dj
+                if i < 0 or N <= i or j < 0 or M <= j:
+                    continue
+                if visited[i][j]:
+                    continue
+                visited[i][j] = True
+                visit_cnt += 1
+
+                ## 3.
+
+                ret += max(0, level - cell_map[i][j].height)
+
+                heappush(q, cell_map[i][j])
+
+        return ret
+
+
 if __name__ == "__main__":
-    s = Solution2()
+    s = Solution3()
     print(s.trapRainWater([[1, 4, 3, 1, 3, 2], [3, 2, 1, 3, 2, 4], [2, 3, 3, 2, 3, 1]]))
     print(
         s.trapRainWater(
