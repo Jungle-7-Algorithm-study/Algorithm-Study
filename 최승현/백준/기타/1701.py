@@ -106,6 +106,32 @@ def solution2(s: str) -> int:
     return ret
 
 
+def solution3(s: str) -> int:
+    """
+    fail function을 함수 본체 안에 넣은 버전
+    시간초과 💀💀💀💀💀💀💀💀💀💀💀💀
+    """
+    N = len(s)
+    arr = [0 for _ in range(N)]
+    answer = 0
+
+    for start in range(N - 1):
+        j = 0
+        for i in range(N):
+            # 초기화
+            arr[i] = 0
+
+        for x in range(1, N - start):
+            while j > 0 and s[start + j] != s[start + x]:
+                j = arr[j - 1]
+            if s[start + x] == s[start + j]:
+                j += 1
+                arr[x] = j
+                answer = max(answer, j)
+
+    return answer
+
+
 if __name__ == "__main__":
     string = input()
-    print(solution2(string))
+    print(solution3(string))
