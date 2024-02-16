@@ -6,7 +6,7 @@ for _ in range(T):
     for i in range(len(score)):
         if score[i] == 'O':
             cnt += 1
-            total += cnt*1
+            total += cnt
         else:
             cnt = 0
     print(total)
