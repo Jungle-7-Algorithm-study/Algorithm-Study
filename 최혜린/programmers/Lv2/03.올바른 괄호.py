@@ -1,5 +1,5 @@
 def solution(s):
-    if (s[0] == ')') or (s[-1] == '('):
+    if (s[0] == ')'):
         return False
     
     stackCnt = 0
