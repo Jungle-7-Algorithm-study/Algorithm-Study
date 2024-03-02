@@ -10,7 +10,7 @@ function find(parent, x){
     if(parent[x] === x){ // 자신의 부모가 자신이다 : 부모가 없다
         return x
     }
-    return parent[x] = find(parent, parent[x])
+    return parent[x] = find(parent, parent[x]) // 재귀적으로 부모를 찾아 들어감
 }
 
 function union(parent, a, b){
