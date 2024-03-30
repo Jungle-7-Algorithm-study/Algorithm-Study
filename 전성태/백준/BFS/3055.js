@@ -17,9 +17,7 @@ function BFS(waterStart, gy, gx){
     // 위, 왼, 아, 오
     const dy = [-1, 0, 1, 0]
     const dx = [0, -1, 0, 1]
-    let waterQueue
-    if(!waterStart.length) waterQueue = []
-    else waterQueue = [...waterStart]
+    const waterQueue = [...waterStart]
     const goQueue = [[[gy, gx],0]]
     let day = 0 
     let ans = []
