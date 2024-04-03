@@ -9,6 +9,10 @@ for(let i = 1; i <= N; i++){
     visitedJukRok[i-1] = Array(N).fill(0)
 }
 
+// 위 왼 아 오
+const dy = [-1, 0, 1, 0]
+const dx = [0, -1, 0, 1]
+
 let nomalAns = 0
 let zukRokAns = 0 
 
@@ -25,9 +29,6 @@ for(let y = 0; y < N; y++){
     }
 }
 
-// 위 왼 아 오
-const dy = [-1, 0, 1, 0]
-const dx = [0, -1, 0, 1]
 
 
 function BFS(y = 0 ,x = 0,color,visited, type){
