@@ -1,15 +1,10 @@
 """
 http://boj.kr/8983
 
-[result]
-60점 / 100점
-
-사유: 동물을 X축으로 정렬하여 각 사대에서 사냥할 수 있는 동물의 수를 구하는 풀이는 중복이 많이 발생하게 된다. 비록 그 중복을 해결하기 위해 set을 사용해 풀이 자체는 맞을지 몰라도, 쐈던 동물을 또 쏜것이나 다름없으니까 비효율적이다.
-
 https://western-sky.tistory.com/140의 풀이를 참고하여 사대 좌표를 정렬하여 각 동물이 사냥당할 수 있는지 여부를 판별하는 것이 더 효율적인 프로그램이 될 것이다.
 """
 
-from bisect import bisect_left
+from bisect import bisect_left, bisect_right
 from collections.abc import Iterable, Sequence
 from sys import stdin
 
@@ -35,7 +30,7 @@ def distance(s: intx, pos: Position) -> int:
     return abs(s - pos[0]) + pos[1]
 
 
-def main(A: SortedSequence[Position], S: Iterable[intx], L: int) -> int:
+def main(A: Iterable[Position], S: SortedSequence[intx], L: int) -> int:
     """
     A: 동물의 위치들
     S: 사대의 위치들
@@ -43,18 +38,28 @@ def main(A: SortedSequence[Position], S: Iterable[intx], L: int) -> int:
 
     returns: 전체 사대를 놓고 보았을 때 잡을 수 있는 동물의 수
     """
-    log(A)
-    result: set[Position] = set()
+    cnt = 0
+    for animal in A:
+        """
+        │    a
+        │  ╱ ┊ ╲
+        └─z──┴──w─
 
-    for s in S:
-        # x구간 [s-L, s+L] 사이의 동물들과의 거리를 비교
-        start_idx = bisect_left(A, s - L, key=lambda x: x[0])
-        for idx in range(start_idx, len(A)):
-            if distance(s, A[idx]) <= L:
-                result.add(A[idx])
+        어떤 동물 a의 좌표가 (x,y)라고 하자, 이 동물이 사냥당하기 위해선 적어도 범위 [x+y-l, x-y+l] 안에 사대가 있어야 한다.
 
-    log(result)
-    return len(result)
+        증명은 다음 식을 z와 w에 대해서 각각 풀면 된다:
+
+        abs(x-z) + y <= l
+        """
+        x, y = animal
+        left_idx = bisect_left(S, x + y - L)
+        right_idx = bisect_right(S, x - y + L)
+
+        if left_idx < right_idx:
+            # can be shot
+            cnt += 1
+
+    return cnt
 
 
 if __name__ == "__main__":
@@ -68,4 +73,4 @@ if __name__ == "__main__":
             continue
         A.append((x, y))
 
-    print(main(sorted(A, key=lambda tup: tup[0]), sadaes, L))
+    print(main(A, sorted(sadaes), L))
