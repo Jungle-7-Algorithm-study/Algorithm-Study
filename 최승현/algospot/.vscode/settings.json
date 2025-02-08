@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "__bit_reference": "cpp"
+    }
+}
